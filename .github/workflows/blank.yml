@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        arch: [aarch64, armv7]
-        python-version: [3.11]   # Adjust if you want multiple versions
+        arch: [aarch64, armv8]
+        python-version: [3.8]   # Adjust if you want multiple versions
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
           unzip -l pypi-wheel-builder/dist/*.whl | grep lief
 
       - name: Upload wheel artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: lief-${{ matrix.arch }}-wheel
           path: pypi-wheel-builder/dist/*.whl
